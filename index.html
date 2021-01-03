@@ -1,383 +1,103 @@
-<!doctype HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
-<title>学会Redis</title>
-<style>
-body {
-color: #333;
-font-family: sans-serif;
-font-size: 12pt;
-line-height: 170%;
-padding: 0 30px 0 270px;
-}
-
-header .banner {
-margin: 0 0 1em 0;
-}
-
-header .banner, nav .banner {
-color: #777;
-font-size: 10pt;
-font-weight: bold;
-}
-
-header h1 {
-background: #0c3;
-border-radius: 4px;
-color: #fff;
-font-size: 24pt;
-margin: 0;
-padding: 1.2em 0;
-text-align: center;
-}
-
-nav {
-font-size: 10pt;
-overflow-x: hidden;
-overflow-y: auto;
-position: fixed;
-top: 0;
-left: 0;
-bottom: 0;
-width: 240px;
-}
-
-nav .menubar {
-border-bottom: solid 1px #ccc;
-display: none;
-height: 48px;
-line-height: 48px;
-padding: 0 10px;
-}
-
-nav .button {
-background: #777;
-border: 1px solid #333;
-color: #fff;
-font-size: 10pt;
-font-weight: bold;
-padding: 8px;
-border-radius: 4px;
-}
-
-nav ul {
-padding: 0 0 0 10px;
-}
-
-nav ul a {
-color: #333;
-text-decoration: none;
-}
-
-nav ul a:hover {
-text-decoration: underline;
-}
-
-nav li {
-line-height: 180%;
-list-style: none;
-margin: 0;
-padding: 0;
-}
-
-nav .level2 {
-font-size: 11pt;
-font-weight: bold;
-}
-
-nav .level3 {
-padding-left: 1em;
-}
-
-nav .level3:before { 
-content: "» ";
-}
-
-nav .level4 {
-padding-left: 2em;
-}
-
-nav .level4:before {
-content: "› ";
-}
-
-article h2 {
-border-bottom: dotted 1px #777;
-font-size: 12pt;
-line-height: 100%;
-margin: 4em 0 1em 0;
-padding: 0 0 0.3em 0;
-}
-
-article h3 {
-font-size: 12pt;
-line-height: 100%;
-margin: 2em 0 1em 0;
-padding: 0;
-}
-
-article h4 {
-font-size: 12pt;
-font-style:italic;
-font-weight: normal;
-line-height: 100%;
-margin: 1.2em 0 1em 0;
-padding: 0;
-}
-
-article p {
-margin: 1em 0;
-}
-
-article p code {
-background: #eee;
-border: 1px solid #ccc;
-}
-
-article p strong {
-color: #f00;
-}
-
-article pre {
-background: #eee;
-border-left: solid 2px #3c0;
-font-size: 10pt;
-margin: 1em 0;
-padding: 0 0 0 1em;
-overflow-x: auto;
-overflow-y: padding;
-}
-
-article blockquote {
-background: #fff;
-border: dashed 1px #777;
-border-left: solid 2px #777;
-color: #000;
-margin: 0;
-padding: 0 0 0 1em;
-}
-
-article ul, article ol {
-padding-left: 2em;
-}
-
-footer {
-border-top: 1px solid #ccc;
-font-size: 10pt;
-margin-top: 4em;
-}
-
-@media (max-width: 768px) {
-
-body {
-padding: 0 10px 0 230px;
-}
-
-nav {
-width: 230px;
-}
-
-}
-
-@media (max-width: 480px) {
-
-body {
-padding: 64px 10px 0 10px;
-}
-
-header .banner {
-display: none;
-}
-
-nav {
-position: absolute;
-width: 100%;
-}
-
-nav .menubar {
-display: block;
-}
-
-nav .banner {
-float: right;
-}
-
-nav ul {
-background: #fff;
-display: none;
-font-size: 14pt;
-margin: 0;
-padding: 0 0 0 8px;
-}
-
-nav .level2 {
-font-size: 16pt;
-font-weight: bold;
-}
-
-nav li {
-line-height: 240%;
-}
-
-.index nav ul {
-display: block;
-}
-
-.index article {
-display: none;
-}
-
-}
-</style>
-<script>
-  (function (tags) {
-    var i = 0, len = tags.length;
-
-    for (; i < len; ++i) {
-        document.createElement(tags[i]);
-    }
-  }([ 'header', 'nav', 'article', 'footer' ]));
-</script>
+  <meta charset="UTF-8">
+  <title>IT自学吧</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/lib/themes/vue.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-dark-mode@0.6.1/dist/style.css" />
+  <script>
+	var _hmt = _hmt || [];
+	(function() { 
+    // MARK: ===========================百度统计，请移除此处代码==============================
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?c70166876c49625d2a39ad01a26ff538";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+    // ================================== END ==============================================
+	})();
+  </script>
+  
 </head>
 <body>
-<header>
-<h1 id="-">天书</h1>
-<p>想用<code>markdown</code>编写带索引的单页结构HTML文档的话，可以试试天书。</p>
-
-</header>
-<nav>
-<div class="menubar">
-<a class="button">&#9776;&nbsp;索引</a>
-</div>
-<ul>
-<li class="level2"><a href="#1">1. 文档生成工具</a></li><li class="level3"><a href="#1.1">前提</a></li><li class="level3"><a href="#1.2">单页面</a></li><li class="level3"><a href="#1.3">多页面</a></li><li class="level2"><a href="#2">2. 文档生成工具</a></li><li class="level3"><a href="#2.1">前提</a></li><li class="level3"><a href="#2.2">单页面</a></li><li class="level3"><a href="#2.3">多页面</a></li><li class="level3"><a href="#2.4">开源协议</a></li></ul>
-
-</nav>
-<article>
-<p>[toc]</p>
-<h2 id="1">1. 文档生成工具</h2>
-<p>都是利用markdown 文件快捷生成文档的前端工具!</p>
-<ul>
-<li><p>tianshu [单页面]</p>
-</li>
-<li><p>docsify  [多页面]</p>
-</li>
-</ul>
-<h3 id="1.1">前提</h3>
-<blockquote>
-<p>安装node.js</p>
-</blockquote>
-<ul>
-<li>下载node.js  <code>http://nodejs.cn/download</code></li>
-<li>一路next安装</li>
-</ul>
-<pre><code class="lang-python"># 检测是否安装
-node -v
-npm -v  # npm和 python 中的pip一样, 都是下载第三方资源库的命令!</code></pre>
-<p><img src="https://gitee.com/itzixueba/images/raw/master/img/image-20210103142534866.png" alt="image-20210103142534866"></p>
-<p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20210103142316094.png" alt="image-20210103142316094"></p>
-<h3 id="1.2">单页面</h3>
-<blockquote>
-<p>tianshu</p>
-<p><a href="https://github.com/tianmajs/tianshu">https://github.com/tianmajs/tianshu</a></p>
-</blockquote>
-<p><strong>使用</strong></p>
-<ul>
-<li><p>全局下载tianshu   <code>npm install tianshu -g</code></p>
-</li>
-<li><p><strong>使用</strong></p>
-<p>首先参考<code>demo/</code>目录，使用<code>markdown</code>编写一些章节文件（位于<code>demo/section/</code>），并使用<code>HTML</code>编写好页面模板文件（位于<code>demo/index.tpl</code>）。在模板文件中，使用<code>x-markdown</code>标签引用<code>.md</code>文件，并使用<code>x-index</code>标签指定索引输出位置。</p>
-<p>准备好所有文件后，使用以下命令将模板文件编译为HTML文件。</p>
-<blockquote>
-<p>打开cmd 进入项目</p>
-<p>tianshu    index.tpl</p>
-</blockquote>
-<p>如果希望生成的<code>index.html</code>好看一些，可以在<code>index.tpl</code>里写一些CSS。</p>
-</li>
-</ul>
-<h3 id="1.3">多页面</h3>
-
-<p>[toc]</p>
-<h2 id="2">2. 文档生成工具</h2>
-<p>都是利用markdown 文件快捷生成文档的前端工具!</p>
-<ul>
-<li><p>tianshu [单页面]</p>
-</li>
-<li><p>docsify  [多页面]</p>
-</li>
-</ul>
-<h3 id="2.1">前提</h3>
-<blockquote>
-<p>安装node.js</p>
-</blockquote>
-<ul>
-<li>下载node.js  <code>http://nodejs.cn/download</code></li>
-<li>一路next安装</li>
-</ul>
-<pre><code class="lang-python"># 检测是否安装
-node -v
-npm -v  # npm和 python 中的pip一样, 都是下载第三方资源库的命令!</code></pre>
-<p><img src="https://gitee.com/itzixueba/images/raw/master/img/image-20210103142534866.png" alt="image-20210103142534866"></p>
-<p><img src="C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20210103142316094.png" alt="image-20210103142316094"></p>
-<h3 id="2.2">单页面</h3>
-<blockquote>
-<p>tianshu</p>
-<p><a href="https://github.com/tianmajs/tianshu">https://github.com/tianmajs/tianshu</a></p>
-</blockquote>
-<p><strong>使用</strong></p>
-<ul>
-<li><p>全局下载tianshu   <code>npm install tianshu -g</code></p>
-</li>
-<li><p><strong>使用</strong></p>
-<p>首先参考<code>demo/</code>目录，使用<code>markdown</code>编写一些章节文件（位于<code>demo/section/</code>），并使用<code>HTML</code>编写好页面模板文件（位于<code>demo/index.tpl</code>）。在模板文件中，使用<code>x-markdown</code>标签引用<code>.md</code>文件，并使用<code>x-index</code>标签指定索引输出位置。</p>
-<p>准备好所有文件后，使用以下命令将模板文件编译为HTML文件。</p>
-<blockquote>
-<p>打开cmd 进入项目</p>
-<p>tianshu    index.tpl</p>
-</blockquote>
-<p>如果希望生成的<code>index.html</code>好看一些，可以在<code>index.tpl</code>里写一些CSS。</p>
-</li>
-</ul>
-<h3 id="2.3">多页面</h3>
-
-
-
-</article>
-<footer>
-<h3 id="2.4">开源协议</h3>
-<p>本程序基于MIT协议开源。</p>
-<pre><code>Copyright (c) 2010-2013 Alibaba.com, Inc.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the &quot;Software&quot;), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is furnished
-to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-DEALINGS IN THE SOFTWARE.</code></pre>
-
-</footer>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-48219044-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
+  <div id="app"></div>
+  <script>
+    window.$docsify = {
+      name: 'IT自学吧',
+      repo: 'https://gitee.com/itzixueba',
+      loadNavbar: true,
+      loadSidebar: true, // 加载自定义侧边栏
+      maxLevel: 2, // 默认情况下会抓取文档中所有标题渲染成目录，可配置最大支持渲染的标题层级。
+      subMaxLevel: 4, // 生成目录的最大层级
+      mergeNavbar: true, // 小屏设备下合并导航栏到侧边栏
+      coverpage: true,  //首页
+      auto2top: true,
+      search: {
+        placeholder: '搜索',
+        noData: '找不到结果!',
+        depth: 3
+      },
+      alias: { // 定义路由别名，可以更自由的定义路由规则。 支持正则
+        '/.*/_sidebar.md': '/_sidebar.md',//防止意外回退
+        '/.*/_navbar.md': '/_navbar.md'
+      },
+      pagination: {
+        previousText: '上一篇',
+        nextText: '下一篇',
+        crossChapter: true,
+        crossChapterText: true
+      },
+      darkMode: {
+        light: {
+          toggleBtnBg: '#42b983'
+        }
+      },
+      plugins: [
+        function (hook) {
+          var header = [
+            '<p>',
+              // '<a href="https://www.aliyun.com/sale-season/2020/procurement-new-members?userCode=thp9caen">',
+              //'<img src="https://gitee.com/itzixueba/images/raw/master/img/addme.jpg" alt="公众号" width="430px" height="136px" style="margin-top:-70px">',
+            '</p>'
+          ].join('');
+          var footer = [
+            '<hr/>',
+            '<footer style="text-align: center">',
+              '<p>',
+              // '<a href="https://www.aliyun.com/sale-season/2020/procurement-new-members?userCode=thp9caen">',
+              //'<img src="http://cdn.jayh.club/blog/20200910/8cQn6wSJtQND.png?imageslim" alt="公众号" width="557px" height="294px">',
+			  '<img src="https://gitee.com/itzixueba/images/raw/master/img/addme.jpg" alt="微信" width="557px" height="294px">',
+            '</p>',
+            '<span><a href="https://itzixueba.com/" target="_blank">京ICP备18060789号-2</a></span>',
+            '</footer>'
+          ].join('');
+          hook.afterEach(function (html) {
+            var isReadme = window.location.href.indexOf("README");
+            if (isReadme === -1) {
+              return header + html + footer;
+            } else {
+              return html + footer;
+            }
+          });
+        }
+      ]
+    }
+  </script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-c.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-bash.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-cpp.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-json.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-java.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-dark-mode@0.6.1/dist/index.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
+	
 </body>
 </html>
